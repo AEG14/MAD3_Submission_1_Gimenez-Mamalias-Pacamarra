@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:midterm_activity/src/enum/enum.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthController with ChangeNotifier {
   // Static method to initialize the singleton in GetIt
@@ -21,20 +22,33 @@ class AuthController with ChangeNotifier {
     if (isLoggedIn) {
       state = AuthState.authenticated;
       //should store session
-
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setBool('isLoggedIn', true);
       notifyListeners();
     }
   }
 
   ///write code to log out the user and add it to the home page.
-  logout() {
-    //should clear session
+  logout() async {
+    // Clear session
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove('isLoggedIn');
+    state = AuthState.unauthenticated;
+    notifyListeners();
   }
 
   ///must be called in main before runApp
   ///
   loadSession() async {
-    //check secure storage method
+    // check secure storage method
+    final prefs = await SharedPreferences.getInstance();
+    bool? isLoggedIn = prefs.getBool('isLoggedIn');
+    if (isLoggedIn == true) {
+      state = AuthState.authenticated;
+    } else {
+      state = AuthState.unauthenticated;
+    }
+    notifyListeners();
   }
 
   ///https://pub.dev/packages/flutter_secure_storage or any caching dependency of your choice like localstorage, hive, or a db
