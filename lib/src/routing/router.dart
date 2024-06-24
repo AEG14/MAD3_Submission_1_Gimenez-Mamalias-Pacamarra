@@ -5,10 +5,11 @@ import "package:get_it/get_it.dart";
 import "package:go_router/go_router.dart";
 import "package:midterm_activity/src/controllers/auth_controller.dart";
 import "package:midterm_activity/src/enum/enum.dart";
-import "package:midterm_activity/src/screens/auth/login.screen.dart";
 import "package:midterm_activity/src/screens/home/home.screen.dart";
 import "package:midterm_activity/src/screens/home/wrapper.dart";
 import "package:midterm_activity/src/screens/index.screen.dart";
+
+import "../screens/auth/login.screen.dart";
 
 /// https://pub.dev/packages/go_router
 

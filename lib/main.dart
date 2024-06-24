@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:midterm_activity/src/controllers/auth_controller.dart';
-import 'package:midterm_activity/src/routing/router.dart';
+import 'src/controllers/auth_controller.dart';
+import 'src/routing/router.dart';
 
 void main() async {
   AuthController.initialize();
