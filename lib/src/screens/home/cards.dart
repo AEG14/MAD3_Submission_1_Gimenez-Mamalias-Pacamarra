@@ -8,7 +8,6 @@ class HomeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.red,
       height: 220,
       child: ListView.builder(
         itemCount: newsrItems.length,
@@ -45,7 +44,6 @@ class HomeCardItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(8.0),
-      color: Colors.amber,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
