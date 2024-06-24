@@ -3,9 +3,10 @@ import 'src/controllers/auth_controller.dart';
 import 'src/routing/router.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   AuthController.initialize();
-  GlobalRouter.initialize();
   await AuthController.I.loadSession();
+  GlobalRouter.initialize();
   runApp(const MyApp());
 }
 
