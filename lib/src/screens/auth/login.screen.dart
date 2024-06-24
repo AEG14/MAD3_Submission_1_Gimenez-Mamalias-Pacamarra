@@ -93,14 +93,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Already have an account?',
+                        'Don\'t have an account?',
                         style: tPoppinsRegular,
                       ),
                       const SizedBox(width: 5),
                       GestureDetector(
                         onTap: () {},
                         child: Text(
-                          'Sign in',
+                          'Sign up',
                           style: tPoppinsBold.copyWith(
                             color: const Color(0xff242F9B),
                             fontSize: 15,
