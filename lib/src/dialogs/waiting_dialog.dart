@@ -1,9 +1,6 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-
-import '../services/information_service.dart'; // Adjust import as per your project structure
 
 class WaitingDialog extends StatelessWidget {
   static Future<T?> show<T>(BuildContext context,
