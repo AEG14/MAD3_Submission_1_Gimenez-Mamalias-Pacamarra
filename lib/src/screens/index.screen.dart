@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
+import '../controllers/auth_controller.dart';
+import '../routing/router.dart';
+import 'auth/login.screen.dart';
 import '../routing/router.dart';
 
 class IndexScreen extends StatelessWidget {
@@ -42,7 +44,8 @@ class IndexScreen extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    // logOut();
+                    AuthController.I.logout();
+                    GlobalRouter.I.router.go(LoginScreen.route);
                   },
                   icon: Icon(Icons.logout_rounded),
                   label: Text('logout'),

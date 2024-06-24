@@ -48,53 +48,55 @@ class GlobalRouter {
     _rootNavigatorKey = GlobalKey<NavigatorState>();
     _shellNavigatorKey = GlobalKey<NavigatorState>();
     router = GoRouter(
-        navigatorKey: _rootNavigatorKey,
-        initialLocation: HomeScreen.route,
-        redirect: handleRedirect,
-        refreshListenable: AuthController.I,
-        routes: [
-          GoRoute(
-              parentNavigatorKey: _rootNavigatorKey,
-              path: LoginScreen.route,
-              name: LoginScreen.name,
+      navigatorKey: _rootNavigatorKey,
+      initialLocation: HomeScreen.route,
+      redirect: handleRedirect,
+      refreshListenable: AuthController.I,
+      routes: [
+        GoRoute(
+          parentNavigatorKey: _rootNavigatorKey,
+          path: LoginScreen.route,
+          name: LoginScreen.name,
+          builder: (context, _) {
+            return const LoginScreen();
+          },
+        ),
+        ShellRoute(
+          navigatorKey: _shellNavigatorKey,
+          routes: [
+            GoRoute(
+              parentNavigatorKey: _shellNavigatorKey,
+              path: HomeScreen.route,
+              name: HomeScreen.name,
               builder: (context, _) {
-                return const LoginScreen();
-              }),
-          ShellRoute(
-              navigatorKey: _shellNavigatorKey,
-              routes: [
-                GoRoute(
-                    parentNavigatorKey: _shellNavigatorKey,
-                    path: HomeScreen.route,
-                    name: HomeScreen.name,
-                    builder: (context, _) {
-                      return const HomeScreen();
-                    }),
-                GoRoute(
-                    parentNavigatorKey: _shellNavigatorKey,
-                    path: "/index",
-                    name: "Wrapped Index",
-                    builder: (context, _) {
-                      return const IndexScreen();
-                    }),
-              ],
-              builder: (context, state, child) {
-                return HomeWrapper(
-                  child: child,
-                );
-              }),
-          GoRoute(
-              parentNavigatorKey: _rootNavigatorKey,
-              path: IndexScreen.route,
-
-              /// /
-              name: IndexScreen.name,
+                return const HomeScreen();
+              },
+            ),
+            GoRoute(
+              parentNavigatorKey: _shellNavigatorKey,
+              path: "/index",
+              name: "Wrapped Index",
               builder: (context, _) {
                 return const IndexScreen();
               },
-              routes: [
-                //routes
-              ]),
-        ]);
+            ),
+          ],
+          builder: (context, state, child) {
+            return HomeWrapper(child: child);
+          },
+        ),
+        GoRoute(
+          parentNavigatorKey: _rootNavigatorKey,
+          path: IndexScreen.route,
+          name: IndexScreen.name,
+          builder: (context, _) {
+            return const IndexScreen();
+          },
+          routes: [
+            //other routes
+          ],
+        ),
+      ],
+    );
   }
 }
